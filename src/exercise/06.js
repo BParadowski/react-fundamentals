@@ -9,6 +9,17 @@ function UsernameForm({onSubmitUsername}) {
   // `event.preventDefault()` to prevent the default behavior of form submit
   // events (which refreshes the page).
   // 📜 https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+
+  const [text, setText] = React.useState('')
+
+  function handleNewInput(event) {
+    event.preventDefault()
+    if (event.target.value.match(/[A-Z]/g)) {
+      alert('Fuck you BIG LETTER MAN')
+    } else {
+      setText(event.target.value)
+    }
+  }
   //
   // 🐨 get the value from the username input (using whichever method
   // you prefer from the options mentioned in the instructions)
@@ -22,10 +33,15 @@ function UsernameForm({onSubmitUsername}) {
   return (
     <form>
       <div>
-        <label>Username:</label>
-        <input type="text" />
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          onInput={handleNewInput}
+          value={text}
+        />
       </div>
-      <button type="submit">Submit</button>
+      <button type="button">Submit</button>
     </form>
   )
 }
